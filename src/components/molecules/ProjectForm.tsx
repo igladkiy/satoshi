@@ -18,11 +18,11 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ project, onUpdate, onChange }
             sx={{
                 display: "flex",
                 flexDirection: "column",
-                gap: "20px",
+                gap: 2,
             }}
         >
             {/* Project ID (Read-Only) */}
-            <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                 <Typography sx={{ minWidth: "150px" }}>Project ID:</Typography>
                 <Typography variant="body1" sx={{ fontWeight: "bold" }}>
                     {project.id}
@@ -30,7 +30,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ project, onUpdate, onChange }
             </Box>
 
             {/* Project Name */}
-            <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                 <Typography sx={{ minWidth: "150px" }}>Project Name:</Typography>
                 <TextField
                     fullWidth
@@ -42,7 +42,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ project, onUpdate, onChange }
             </Box>
 
             {/* Description */}
-            <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                 <Typography sx={{ minWidth: "150px" }}>Description:</Typography>
                 <TextField
                     fullWidth
@@ -56,7 +56,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ project, onUpdate, onChange }
             </Box>
 
             {/* Start Date */}
-            <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                 <Typography sx={{ minWidth: "150px" }}>Start Date:</Typography>
                 <TextField
                     fullWidth
@@ -69,7 +69,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ project, onUpdate, onChange }
             </Box>
 
             {/* End Date */}
-            <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                 <Typography sx={{ minWidth: "150px" }}>End Date:</Typography>
                 <TextField
                     fullWidth
@@ -82,7 +82,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ project, onUpdate, onChange }
             </Box>
 
             {/* Project Manager */}
-            <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                 <Typography sx={{ minWidth: "150px" }}>Project Manager:</Typography>
                 <TextField
                     fullWidth
@@ -94,7 +94,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ project, onUpdate, onChange }
             </Box>
 
             {/* Update Button */}
-            <Box sx={{ display: "flex", justifyContent: "flex-start", marginTop: "20px" }}>
+            <Box sx={{ display: "flex", justifyContent: "flex-start", marginTop: 2 }}>
                 <Button variant="contained" color="primary" onClick={onUpdate}>
                     Update
                 </Button>

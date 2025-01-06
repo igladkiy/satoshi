@@ -1,8 +1,7 @@
 import React from "react"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
-import List from "@mui/material/List"
-import ListItem from "@mui/material/ListItem"
+import SidebarMenu from "../molecules/SidebarMenu"
 import { Project } from "../../types"
 
 interface SidebarProps {
@@ -11,13 +10,18 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ favoriteProjects }) => {
     return (
-        <Box sx={{ width: "20%", padding: "20px", borderRight: "1px solid #ccc" }}>
-            <Typography variant="h6">Favorite Projects</Typography>
-            <List>
-                {favoriteProjects.map((project) => (
-                    <ListItem key={project.id}>{project.name}</ListItem>
-                ))}
-            </List>
+        <Box
+            sx={{
+                width: "20%",
+                padding: "20px",
+                borderRight: "1px solid #ccc",
+                backgroundColor: "#f7f7f7",
+            }}
+        >
+            <Typography variant="h6" gutterBottom>
+                Favorite Projects
+            </Typography>
+            <SidebarMenu favoriteProjects={favoriteProjects} />
         </Box>
     )
 }

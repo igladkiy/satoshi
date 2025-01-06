@@ -1,10 +1,10 @@
-import { Project } from "types/index"
+import { Project } from "../types"
 
 const mockProjects: Project[] = [
     {
         id: "project_a",
         name: "Project A",
-        description: "Description of Project A",
+        description: "Description A",
         startDate: "2025-01-01",
         endDate: "2025-12-31",
         manager: "John Doe",
@@ -12,7 +12,7 @@ const mockProjects: Project[] = [
     {
         id: "project_b",
         name: "Project B",
-        description: "Description of Project B",
+        description: "Description B",
         startDate: "2025-01-01",
         endDate: "2025-12-31",
         manager: "Jane Smith",
@@ -20,52 +20,17 @@ const mockProjects: Project[] = [
     {
         id: "project_c",
         name: "Project C",
-        description: "Description of Project C",
+        description: "Description C",
         startDate: "2025-01-01",
         endDate: "2025-12-31",
-        manager: "John Doe",
-    },
-    {
-        id: "project_d",
-        name: "Project D",
-        description: "Description of Project D",
-        startDate: "2025-01-01",
-        endDate: "2025-12-31",
-        manager: "Jane Smith",
-    },
-    {
-        id: "project_e",
-        name: "Project E",
-        description: "Description of Project E",
-        startDate: "2025-01-01",
-        endDate: "2025-12-31",
-        manager: "John Doe",
+        manager: "Alice Brown",
     },
 ]
 
-export const fetchProjects = (): Promise<Project[]> => {
+export const fetchProjectsFromMockApi = async (): Promise<Project[]> => {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(mockProjects)
-        }, 500)
-    })
-}
-
-export const updateProject = (id: string, updatedData: Partial<Project>): Promise<Project> => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            const projectIndex = mockProjects.findIndex((project) => project.id === id)
-            if (projectIndex === -1) {
-                reject(new Error("Project not found"))
-                return
-            }
-
-            mockProjects[projectIndex] = {
-                ...mockProjects[projectIndex],
-                ...updatedData,
-            }
-
-            resolve(mockProjects[projectIndex])
-        }, 500)
+        }, 1000)
     })
 }

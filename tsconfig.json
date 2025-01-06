@@ -4,10 +4,10 @@
         "module": "ESNext",
         "jsx": "react-jsx",
         "strict": true,
+        "moduleResolution": "node",
         "baseUrl": "./src",
         "paths": {
-            "components/*": ["components/*"],
-            "types": ["types"]
+            "*": ["*"]
         }
     },
     "include": ["**/*.json", "**/*.ts", "**/*.js", ".eslintrc.js"],
