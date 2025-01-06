@@ -8,7 +8,7 @@ import { setFavorites } from "../store/favoritesSlice"
 import { useParams, useNavigate } from "react-router-dom"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
-import { Project } from "../types"
+import { Project } from "types"
 
 const ProjectDetailPage: React.FC = () => {
     const { id } = useParams<{ id: string }>()
@@ -36,9 +36,17 @@ const ProjectDetailPage: React.FC = () => {
     if (!project) return <Typography>Loading...</Typography>
 
     return (
-        <Box sx={{ display: "flex", height: "100vh", backgroundColor: "#fff" }}>
+        <Box
+            sx={{
+                display: "flex",
+                flexDirection: { xs: "column", sm: "row" },
+                height: "100vh",
+                backgroundColor: "#fff",
+            }}
+        >
             <Sidebar favoriteProjects={favorites} />
-            <Box sx={{ flex: 1, padding: "20px" }}>
+
+            <Box sx={{ flexGrow: 1, padding: "20px" }}>
                 <Typography variant="h4" gutterBottom>
                     Edit Project
                 </Typography>

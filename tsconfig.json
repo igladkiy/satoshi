@@ -7,9 +7,12 @@
         "moduleResolution": "node",
         "baseUrl": "./src",
         "paths": {
-            "*": ["*"]
-        }
+            "*": ["*", "src/*"]
+        },
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true
     },
-    "include": ["**/*.json", "**/*.ts", "**/*.js", ".eslintrc.js"],
-    "exclude": ["node_modules/", "build/", "public", "dist/", ".cache/", ".tmp/"]
+    "include": ["src/**/*", "**/*.json", "**/*.ts", "**/*.tsx", ".eslintrc.js"],
+    "exclude": ["node_modules", "build", "public", "dist", ".cache", ".tmp"]
 }

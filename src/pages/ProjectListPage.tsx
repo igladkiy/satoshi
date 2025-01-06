@@ -33,9 +33,16 @@ const ProjectListPage: React.FC = () => {
     if (error) return <Typography>Error: {error}</Typography>
 
     return (
-        <Box sx={{ display: "flex", height: "100vh", backgroundColor: "#fff" }}>
+        <Box
+            sx={{
+                display: "flex",
+                flexDirection: { xs: "column", sm: "row" },
+                backgroundColor: "#fff",
+            }}
+        >
             <Sidebar favoriteProjects={favorites} />
-            <Box sx={{ flex: 1, padding: "20px" }}>
+
+            <Box sx={{ flexGrow: 1, padding: "20px", overflowX: "auto" }}>
                 <Typography variant="h4" gutterBottom>
                     Projects
                 </Typography>
