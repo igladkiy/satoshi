@@ -1,10 +1,20 @@
-## Project setup
+# Project setup
 
 ```bash
 $ npm install
 ```
 
-## Run the project
+# Run the project:
+
+Enter commands in separate terminals:
+
+### 1. Start MOCK API server
+
+```bash
+$ npm run json-server
+```
+
+### 2. Start app
 
 ```bash
 $ npm run start

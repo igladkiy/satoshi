@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit"
 import { Project } from "../types"
-import { fetchProjectsFromMockApi } from "../api/mockApi"
 
 interface ProjectsState {
     projects: Project[]
@@ -15,18 +14,52 @@ const initialState: ProjectsState = {
 }
 
 export const fetchProjects = createAsyncThunk("projects/fetchProjects", async () => {
-    return await fetchProjectsFromMockApi()
+    const response = await fetch("http://localhost:5000/projects")
+    if (!response.ok) {
+        throw new Error("Failed to fetch projects")
+    }
+    return (await response.json()) as Project[]
 })
+
+export const updateProject = createAsyncThunk(
+    "projects/updateProject",
+    async (updatedProject: { id: string; data: Partial<Project> }) => {
+        const { id, data } = updatedProject
+
+        const response = await fetch(`http://localhost:5000/projects/${id}`)
+        if (!response.ok) {
+            throw new Error("Failed to fetch project")
+        }
+
+        const currentProject = await response.json()
+
+        const updatedFields = { ...currentProject, ...data }
+
+        const updateResponse = await fetch(`http://localhost:5000/projects/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedFields),
+        })
+
+        if (!updateResponse.ok) {
+            throw new Error("Failed to update project")
+        }
+
+        return await updateResponse.json()
+    }
+)
 
 const projectsSlice = createSlice({
     name: "projects",
     initialState,
     reducers: {
-        updateProject(state, action: PayloadAction<{ id: string; data: Partial<Project> }>) {
-            const { id, data } = action.payload
-            const project = state.projects.find((proj) => proj.id === id)
-            if (project) {
-                Object.assign(project, data)
+        updateProjectInState(state, action: PayloadAction<Project>) {
+            const updatedProject = action.payload
+            const projectIndex = state.projects.findIndex((proj) => proj.id === updatedProject.id)
+            if (projectIndex !== -1) {
+                state.projects[projectIndex] = updatedProject
             }
         },
     },
@@ -44,8 +77,23 @@ const projectsSlice = createSlice({
                 state.loading = false
                 state.error = action.error.message || "Failed to fetch projects"
             })
+            .addCase(updateProject.pending, (state) => {
+                state.loading = true
+            })
+            .addCase(updateProject.fulfilled, (state, action) => {
+                state.loading = false
+                const updatedProject = action.payload
+                const projectIndex = state.projects.findIndex((proj) => proj.id === updatedProject.id)
+                if (projectIndex !== -1) {
+                    state.projects[projectIndex] = updatedProject
+                }
+            })
+            .addCase(updateProject.rejected, (state, action) => {
+                state.loading = false
+                state.error = action.error.message || "Failed to update project"
+            })
     },
 })
 
-export const { updateProject } = projectsSlice.actions
+export const { updateProjectInState } = projectsSlice.actions
 export default projectsSlice.reducer
